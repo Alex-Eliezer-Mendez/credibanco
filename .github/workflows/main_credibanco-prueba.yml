@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/credibanco-0.0.1-SNAPSHOT.war'
+          path: '${{ github.workspace }}/target/credibanco-0.0.1-SNAPSHOT.jar'
 
   deploy:
     runs-on: windows-latest
@@ -51,6 +51,13 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E3F838528DF44B7DB5DC42A48EDCE9BF }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_535F065BBD7243B5A84CD7CFC3051C08 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CA8082B6AEA4403D9B73A9C63CE57902 }}
+      
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D3351C3808FA436587587D4403D46F59 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C027238AB4FF43AEB565860EF9ACAE52 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_31C0B594878C417E8E9C8C3FFA21885B }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
